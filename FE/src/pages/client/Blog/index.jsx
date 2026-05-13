@@ -81,7 +81,7 @@ function Blog() {
     ];
 
     return (
-        <main className="home mx-auto w-full md:w-[80%] px-4 mt-[7%]">
+        <main className="home mx-auto w-full md:w-[80%] px-4 mt-[11%]">
             <div className="bg-white rounded-lg p-3 mb-3">
                 <div className="flex flex-col md:flex-row">
 

@@ -8,9 +8,9 @@ function Aside() {
   return (
     <aside className="left-sidebar">
       <div>
-        <div className="brand-logo d-flex align-items-center justify-content-between">
+        <div className="brand-logo d-flex align-items-center justify-content-center">
           <Link to="/admin" className="text-nowrap logo-img">
-            <img src="/assets/images/logos/logo.png" width="180" alt="Logo" />
+            <img src="/assets/images/main/logo.jpg" className="h-20 w-20 object-contain flex-shrink-0 mx-auto" alt="Logo" />
           </Link>
           <div className="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i className="ti ti-x fs-8"></i>

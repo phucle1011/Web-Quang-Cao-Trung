@@ -28,48 +28,48 @@ const farmImages = [
 ];
 
 // ── 2. FLASH SALE BANNER ────────────────────
-function FlashSaleBanner() {
-    const [time, setTime] = useState({ h: 5, m: 59, s: 47 });
-    useEffect(() => {
-        const t = setInterval(() => {
-            setTime(prev => {
-                let { h, m, s } = prev;
-                s--;
-                if (s < 0) { s = 59; m--; }
-                if (m < 0) { m = 59; h--; }
-                if (h < 0) return { h: 5, m: 59, s: 59 };
-                return { h, m, s };
-            });
-        }, 1000);
-        return () => clearInterval(t);
-    }, []);
-    const pad = n => String(n).padStart(2, "0");
+// function FlashSaleBanner() {
+//     const [time, setTime] = useState({ h: 5, m: 59, s: 47 });
+//     useEffect(() => {
+//         const t = setInterval(() => {
+//             setTime(prev => {
+//                 let { h, m, s } = prev;
+//                 s--;
+//                 if (s < 0) { s = 59; m--; }
+//                 if (m < 0) { m = 59; h--; }
+//                 if (h < 0) return { h: 5, m: 59, s: 59 };
+//                 return { h, m, s };
+//             });
+//         }, 1000);
+//         return () => clearInterval(t);
+//     }, []);
+//     const pad = n => String(n).padStart(2, "0");
 
-    return (
-        <div className="bg-gradient-to-r from-red-600 to-orange-500 rounded-xl mt-4 p-4 text-white flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-                <span className="text-3xl">⚡</span>
-                <div>
-                    <p className="font-extrabold text-lg leading-none">FLASH SALE HÔM NAY</p>
-                    <p className="text-white/80 text-sm">Combo 30 quả giảm 10% — chỉ áp dụng khi đặt qua điện thoại</p>
-                </div>
-            </div>
-            <div className="flex items-center gap-2 text-center">
-                <span className="text-white/80 text-sm mr-1">Kết thúc sau:</span>
-                {[pad(time.h), pad(time.m), pad(time.s)].map((v, i) => (
-                    <span key={i} className="flex items-center gap-1">
-                        <span className="bg-white/20 text-white font-mono font-bold text-xl px-3 py-1 rounded-lg">{v}</span>
-                        {i < 2 && <span className="font-bold text-lg">:</span>}
-                    </span>
-                ))}
-            </div>
-            <a href="tel:0356808561"
-                className="bg-white text-red-600 font-bold px-5 py-2 rounded-lg no-underline hover:bg-yellow-50 transition flex-shrink-0 text-center">
-                Nhận ưu đãi →
-            </a>
-        </div>
-    );
-}
+//     return (
+//         <div className="bg-gradient-to-r from-red-600 to-orange-500 rounded-xl mt-4 p-4 text-white flex flex-col md:flex-row items-center justify-between gap-4">
+//             <div className="flex items-center gap-3">
+//                 <span className="text-3xl">⚡</span>
+//                 <div>
+//                     <p className="font-extrabold text-lg leading-none">FLASH SALE HÔM NAY</p>
+//                     <p className="text-white/80 text-sm">Combo 30 quả giảm 10% — chỉ áp dụng khi đặt qua điện thoại</p>
+//                 </div>
+//             </div>
+//             <div className="flex items-center gap-2 text-center">
+//                 <span className="text-white/80 text-sm mr-1">Kết thúc sau:</span>
+//                 {[pad(time.h), pad(time.m), pad(time.s)].map((v, i) => (
+//                     <span key={i} className="flex items-center gap-1">
+//                         <span className="bg-white/20 text-white font-mono font-bold text-xl px-3 py-1 rounded-lg">{v}</span>
+//                         {i < 2 && <span className="font-bold text-lg">:</span>}
+//                     </span>
+//                 ))}
+//             </div>
+//             <a href="tel:0356808561"
+//                 className="bg-white text-red-600 font-bold px-5 py-2 rounded-lg no-underline hover:bg-yellow-50 transition flex-shrink-0 text-center">
+//                 Nhận ưu đãi →
+//             </a>
+//         </div>
+//     );
+// }
 
 // ── 3. PRODUCTS (existing + add-to-cart buttons) ──
 function Products() {
@@ -228,11 +228,35 @@ function ZaloFloat() {
     return (
         <div className="fixed bottom-6 right-6 z-50">
             {show && (
-                <div className="mb-3 bg-white rounded-2xl shadow-xl p-4 text-center border border-gray-100 w-52">
-                    <p className="text-sm font-medium text-gray-700 mb-1">Vui lòng kết bạn Zalo</p>
-                    <p className="text-base font-bold" style={{ color: "#e07000" }}>0356 808 561</p>
-                    <p className="text-xs text-gray-400 mt-1">để bắt đầu trò chuyện</p>
-                    <button onClick={() => setShow(false)} className="mt-3 text-xs text-gray-400 hover:text-gray-600">Đóng</button>
+                <div className="mb-3 bg-white rounded-2xl shadow-xl p-5 border border-gray-100 w-60 relative">
+                    {/* Nút X */}
+                    <button
+                        onClick={() => setShow(false)}
+                        className="absolute top-3 right-3 text-gray-400 hover:text-red-500 transition-colors"
+                    >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                            <line x1="18" y1="6" x2="6" y2="18" />
+                            <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                    </button>
+
+                    <div className="flex items-center justify-center gap-2 mb-1">
+                        <div className="w-7 h-7 rounded-full bg-blue-50 flex items-center justify-center">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0068FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                            </svg>
+                        </div>
+                        <p className="text-sm font-medium text-gray-700">Kết bạn Zalo</p>
+                    </div>
+                    <p className="text-xs text-gray-400 mb-3 text-center">để bắt đầu trò chuyện</p>
+
+                    <div className="bg-gray-50 rounded-xl px-3 py-2 mb-2 text-left">
+                        <p className="text-[15px] font-semibold text-gray-800 tracking-wide whitespace-nowrap">📞 0356 808 561</p>
+                    </div>
+
+                    <div className="bg-gray-50 rounded-xl px-3 py-2 text-left">
+                        <p className="text-[15px] font-semibold text-gray-800 tracking-wide whitespace-nowrap">📞 0938 775 599</p>
+                    </div>
                 </div>
             )}
             <button
@@ -379,7 +403,7 @@ function CTASection() {
 function Home() {
     return (
         <main className="home mx-auto w-full md:w-[80%] px-4" id="home">
-            <FlashSaleBanner />
+            {/* <FlashSaleBanner /> */}
             <WhyUs />
             <Products />
             <Reviews />

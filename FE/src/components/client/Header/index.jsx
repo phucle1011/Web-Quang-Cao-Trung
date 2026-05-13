@@ -109,7 +109,7 @@ function Header() {
                     <img
                         src="/assets/images/main/logo.jpg"
                         alt="Trân Hương"
-                        className="h-10 w-10 object-cover rounded-full flex-shrink-0"
+                        className="h-20 w-20 object-contain flex-shrink-0 mx-auto" alt="Logo"
                     />
 
                     {/* Nav links */}
@@ -180,7 +180,6 @@ function Header() {
                             </>
                         )}
                     </ul>
-
                 </div>
             </div>
 

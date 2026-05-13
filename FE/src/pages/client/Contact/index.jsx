@@ -9,7 +9,7 @@ const URL = Constants.DOMAIN_API;
 
 function Contact() {
     return (
-        <main className="max-w-6xl mx-auto p-8 bg-white shadow-lg rounded-lg mt-[7%]">
+        <main className="max-w-6xl mx-auto p-8 bg-white shadow-lg rounded-lg mt-[11%]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 
                 {/* CỘT TRÁI - FAQ */}

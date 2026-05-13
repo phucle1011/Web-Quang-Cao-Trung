@@ -178,83 +178,12 @@ const CATEGORIES = [
 
 const fmt = (n) => n.toLocaleString("vi-VN") + "đ";
 
-/* ─── CART DRAWER ─── */
-function CartDrawer({ cart, onClose, onRemove, onChangeQty }) {
-    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
-    const handleOrder = () => {
-        const lines = cart.map(i => `${i.name} - ${i.label}: ${i.qty} × ${fmt(i.price)}`).join("\n");
-        const msg = encodeURIComponent("Xin chào! Tôi muốn đặt hàng:\n" + lines + `\nTổng: ${fmt(total)}`);
-    };
-
-    return (
-        <div className="fixed inset-0 z-[99999] flex justify-end">
-            <div className="absolute inset-0 bg-black/40" onClick={onClose} />
-            <div className="relative bg-white w-full max-w-sm h-full flex flex-col shadow-2xl">
-                <div
-                    className="flex items-center justify-between px-5 py-4 border-b"
-                    style={{ background: "linear-gradient(135deg,#7a4500,#e07000)" }}
-                >
-                    <h2 className="text-white font-bold text-lg">🛒 Giỏ hàng ({cart.length})</h2>
-                    <button onClick={onClose} className="text-white text-2xl leading-none">&times;</button>
-                </div>
-
-                {cart.length === 0 ? (
-                    <div className="flex-1 flex flex-col items-center justify-center text-gray-400">
-                        <span className="text-6xl mb-3">🛒</span>
-                        <p>Giỏ hàng trống</p>
-                    </div>
-                ) : (
-                    <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
-                        {cart.map((item, i) => (
-                            <div key={i} className="flex items-center gap-3 bg-amber-50 rounded-xl p-3">
-                                <img src={item.img} alt={item.name} className="w-14 h-14 object-cover rounded-lg flex-shrink-0" />
-                                <div className="flex-1 min-w-0">
-                                    <p className="font-bold text-sm text-gray-800 truncate">{item.name}</p>
-                                    <p className="text-xs text-gray-500">{item.label}</p>
-                                    <p className="text-orange-600 font-bold text-sm">{fmt(item.price)}</p>
-                                </div>
-                                <div className="flex flex-col items-center gap-1">
-                                    <div className="flex items-center border rounded-lg overflow-hidden">
-                                        <button onClick={() => onChangeQty(i, -1)}
-                                            className="px-2 py-1 text-orange-600 font-bold hover:bg-orange-50 text-sm">−</button>
-                                        <span className="px-2 text-sm font-bold">{item.qty}</span>
-                                        <button onClick={() => onChangeQty(i, 1)}
-                                            className="px-2 py-1 text-orange-600 font-bold hover:bg-orange-50 text-sm">+</button>
-                                    </div>
-                                    <button onClick={() => onRemove(i)} className="text-xs text-red-400 hover:text-red-600">Xóa</button>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                {cart.length > 0 && (
-                    <div className="border-t px-5 py-4 space-y-3">
-                        <div className="flex justify-between font-bold text-base">
-                            <span>Tổng cộng</span>
-                            <span className="text-orange-600 text-lg">{fmt(total)}</span>
-                        </div>
-                        <button onClick={handleOrder}
-                            className="w-full py-3 rounded-xl font-bold text-white text-base transition"
-                            style={{ background: "linear-gradient(135deg,#f97316,#ea580c)" }}>
-                            💬 Đặt hàng qua Zalo
-                        </button>
-                        <a href="tel:0356808561"
-                            className="block w-full py-3 rounded-xl font-bold text-center no-underline text-orange-600 border-2 border-orange-400 hover:bg-orange-50 transition text-sm">
-                            📞 Gọi đặt hàng: 0356 808 561
-                        </a>
-                    </div>
-                )}
-            </div>
-        </div>
-    );
-}
-
 /* ─── PRODUCT MODAL ─── */
-function ProductModal({ product, onClose, onAddToCart }) {
+function ProductModal({ product, onClose }) {
     const [selectedPrice, setSelectedPrice] = useState(0);
     const [qty, setQty] = useState(1);
     const p = product.prices[selectedPrice];
+    const [showZalo, setShowZalo] = useState(false);
 
     return (
         <div className="fixed inset-0 z-[99998] flex items-center justify-center p-4">
@@ -272,7 +201,7 @@ function ProductModal({ product, onClose, onAddToCart }) {
                 <div className="p-4">
                     <div className="flex items-start justify-between mb-1">
                         <h2 className="font-bold text-base" style={{ color: "#7a4500" }}>{product.name}</h2>
-                        <span className="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded-full whitespace-nowrap ml-2">✅ Còn hàng</span>
+                        <span className="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded-full whitespace-nowrap ml-2">Còn hàng</span>
                     </div>
                     <p className="text-gray-400 text-xs mb-3">{product.desc}</p>
 
@@ -295,73 +224,146 @@ function ProductModal({ product, onClose, onAddToCart }) {
                         ))}
                     </div>
 
-                    <div className="flex items-center gap-2">
-                        <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden">
-                            <button onClick={() => setQty(q => Math.max(1, q - 1))}
-                                className="px-3 py-1.5 text-gray-500 hover:bg-gray-50 text-base">−</button>
-                            <span className="px-3 text-sm font-medium">{qty}</span>
-                            <button onClick={() => setQty(q => q + 1)}
-                                className="px-3 py-1.5 text-gray-500 hover:bg-gray-50 text-base">+</button>
-                        </div>
+                    <div className="flex items-center gap-2 mb-2">
+                       
                         <button
-                            onClick={() => { onAddToCart(product, p, qty); onClose(); }}
-                            className="flex-1 py-2 rounded-lg text-white text-sm font-bold transition"
-                            style={{ background: "#e07000" }}>
-                            🛒 Thêm  {fmt(p.price * qty)}
+                            onClick={() => setShowZalo(true)}
+                            className="flex-1 py-2 rounded-lg text-white text-sm font-bold transition flex items-center justify-center gap-1.5"
+                            style={{ background: "#0068FF" }}>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                            </svg>
+                            Liên hệ Zalo đặt hàng
                         </button>
                     </div>
-
-                    <a href="/product"
-                        className="block w-full text-center mt-2 py-2 rounded-lg text-sm font-bold border border-gray-200 text-gray-500 hover:bg-gray-50 transition no-underline">
-                        Mua ngay  {fmt(p.price * qty)} →
-                    </a>
-
                 </div>
             </div>
 
+            {/* Popup Zalo */}
+            {showZalo && (
+                <div
+                    className="fixed inset-0 bg-black/40 flex items-center justify-center z-[99999]"
+                    onClick={() => setShowZalo(false)}
+                >
+                    <div
+                        className="bg-white rounded-2xl shadow-xl p-5 border border-gray-100 w-64 relative"
+                        onClick={e => e.stopPropagation()}
+                    >
+                        <button
+                            onClick={() => setShowZalo(false)}
+                            className="absolute top-3 right-3 text-gray-400 hover:text-red-500 transition-colors"
+                        >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg>
+                        </button>
+
+                        <div className="flex items-center justify-center gap-2 mb-1">
+                            <div className="w-7 h-7 rounded-full bg-blue-50 flex items-center justify-center">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0068FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                                </svg>
+                            </div>
+                            <p className="text-sm font-medium text-gray-700">Đặt hàng qua Zalo</p>
+                        </div>
+                        <p className="text-xs text-gray-400 mb-3 text-center">Liên hệ hoặc kết bạn Zalo với chúng tôi để đặt hàng</p>
+
+                        <div className="bg-gray-50 rounded-xl px-3 py-2 mb-2 text-left">
+                            <p className="text-[15px] font-semibold text-gray-800 tracking-wide whitespace-nowrap">📞 0356 808 561</p>
+                        </div>
+                        <div className="bg-gray-50 rounded-xl px-3 py-2 text-left">
+                            <p className="text-[15px] font-semibold text-gray-800 tracking-wide whitespace-nowrap">📞 0938 775 599</p>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
-
 /* ─── PRODUCT CARD ─── */
-function ProductCard({ product, onViewDetail, onQuickAdd }) {
+function ProductCard({ product, onViewDetail }) {
+    const [showZalo, setShowZalo] = useState(false);
+
     return (
-        <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group flex flex-col">
-            {/* Image */}
-            <div className="relative bg-amber-50 h-40 flex items-center justify-center overflow-hidden">
-                <img src={product.img} alt={product.name}
-                    className="h-32 object-contain group-hover:scale-105 transition-transform duration-300" />
+        <>
+            <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group flex flex-col">
+                {/* Image */}
+                <div className="relative bg-amber-50 h-40 flex items-center justify-center overflow-hidden">
+                    <img src={product.img} alt={product.name}
+                        className="h-32 object-contain group-hover:scale-105 transition-transform duration-300" />
+                </div>
+
+                {/* Content */}
+                <div className="p-3 flex flex-col flex-1">
+                    <h3 className="font-bold text-sm text-[#7a4500] mb-0.5">{product.name}</h3>
+                    <p className="text-gray-400 text-xs mb-3 line-clamp-2">{product.desc}</p>
+
+                    {/* Price preview */}
+                    <div className="space-y-1 mb-3">
+                        {product.prices.slice(0, 2).map((p, i) => (
+                            <div key={i} className="flex justify-between text-xs">
+                                <span className="text-gray-400">{p.label}</span>
+                                <span className="font-semibold text-orange-400">{fmt(p.price)}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Buttons */}
+                    <div className="flex gap-2 mt-auto">
+                        <button onClick={() => onViewDetail(product)}
+                            className="flex-1 py-1.5 rounded-lg border border-gray-200 text-gray-400 text-xs hover:text-gray-600 transition">
+                            Chi tiết
+                        </button>
+                        <button onClick={() => setShowZalo(true)}
+                            className="flex-1 py-1.5 rounded-lg text-white text-xs transition"
+                            style={{ background: "#e07000" }}>
+                            🛒 Mua
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            {/* Content */}
-            <div className="p-3 flex flex-col flex-1">
-                <h3 className="font-bold text-sm text-[#7a4500] mb-0.5">{product.name}</h3>
-                <p className="text-gray-400 text-xs mb-3 line-clamp-2">{product.desc}</p>
+            {/* Popup Zalo */}
+            {showZalo && (
+                <div
+                    className="fixed inset-0 bg-black/40 flex items-center justify-center z-[99999]"
+                    onClick={() => setShowZalo(false)}
+                >
+                    <div
+                        className="bg-white rounded-2xl shadow-xl p-5 border border-gray-100 w-64 relative"
+                        onClick={e => e.stopPropagation()}
+                    >
+                        <button
+                            onClick={() => setShowZalo(false)}
+                            className="absolute top-3 right-3 text-gray-400 hover:text-red-500 transition-colors"
+                        >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                                <line x1="18" y1="6" x2="6" y2="18"/>
+                                <line x1="6" y1="6" x2="18" y2="18"/>
+                            </svg>
+                        </button>
 
-                {/* Price preview */}
-                <div className="space-y-1 mb-3">
-                    {product.prices.slice(0, 2).map((p, i) => (
-                        <div key={i} className="flex justify-between text-xs">
-                            <span className="text-gray-400">{p.label}</span>
-                            <span className="font-semibold text-orange-400">{fmt(p.price)}</span>
+                        <div className="flex items-center justify-center gap-2 mb-1">
+                            <div className="w-7 h-7 rounded-full bg-blue-50 flex items-center justify-center">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0068FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                                </svg>
+                            </div>
+                            <p className="text-sm font-medium text-gray-700">Đặt hàng qua Zalo</p>
                         </div>
-                    ))}
-                </div>
+                        <p className="text-xs text-gray-400 mb-3 text-center">Liên hệ hoặc kết bạn Zalo với chúng tôi để đặt hàng</p>
 
-                {/* Buttons */}
-                <div className="flex gap-2 mt-auto">
-                    <button onClick={() => onViewDetail(product)}
-                        className="flex-1 py-1.5 rounded-lg border border-gray-200 text-gray-400 text-xs hover:text-gray-600 transition">
-                        Chi tiết
-                    </button>
-                    <button onClick={() => onQuickAdd(product)}
-                        className="flex-1 py-1.5 rounded-lg text-white text-xs transition"
-                        style={{ background: "#e07000" }}>
-                        🛒 Thêm
-                    </button>
+                        <div className="bg-gray-50 rounded-xl px-3 py-2 mb-2 text-left">
+                            <p className="text-[15px] font-semibold text-gray-800 tracking-wide whitespace-nowrap">📞 0356 808 561</p>
+                        </div>
+                        <div className="bg-gray-50 rounded-xl px-3 py-2 text-left">
+                            <p className="text-[15px] font-semibold text-gray-800 tracking-wide whitespace-nowrap">📞 0938 775 599</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            )}
+        </>
     );
 }
 
@@ -371,7 +373,7 @@ function TrustBanner() {
         { icon: "🚚", title: "Giao hàng miễn phí", sub: "Đơn từ 100.000đ" },
         { icon: "🥚", title: "Thu hoạch hàng ngày", sub: "Tươi mới 100%" },
         { icon: "✅", title: "Kiểm định chất lượng", sub: "An toàn vệ sinh" },
-        { icon: "📞", title: "Hỗ trợ 24/7", sub: "0356 808 561" },
+        { icon: "📞", title: "Hỗ trợ 24/7", sub: ["0356 808 561", "0938 775 599"] },
     ];
     return (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
@@ -380,7 +382,10 @@ function TrustBanner() {
                     <span className="text-2xl">{it.icon}</span>
                     <div>
                         <p className="font-bold text-xs text-[#7a4500]">{it.title}</p>
-                        <p className="text-xs text-gray-500">{it.sub}</p>
+                        {Array.isArray(it.sub)
+                            ? it.sub.map((s, j) => <p key={j} className="text-xs text-gray-500">{s}</p>)
+                            : <p className="text-xs text-gray-500">{it.sub}</p>
+                        }
                     </div>
                 </div>
             ))}
@@ -428,25 +433,12 @@ export default function ProductPage() {
     const cartCount = cart.reduce((s, i) => s + i.qty, 0);
 
     return (
-        <main className="home mx-auto w-full md:w-[80%] px-4 mt-[7%] mb-0">
+        <main className="home mx-auto w-full md:w-[80%] px-4 mt-[11%] mb-0">
 
             {/* Page Header */}
-            <div className="mt-6 mb-5 flex flex-col md:flex-row md:items-center justify-between gap-3">
-                <div>
-                    <h1 className="text-2xl font-extrabold text-[#c4874a]">Sản phẩm trứng gà tươi</h1>
-                    <p className="text-gray-500 text-sm">Tươi mới mỗi ngày — kiểm định chất lượng — giao tận nơi</p>
-                </div>
-                <button onClick={() => setCartOpen(true)}
-                    className="relative flex items-center gap-2 font-medium px-2 py-1 rounded-xl text-white transition self-start md:self-auto"
-                    style={{ background: "#c97000" }}
-                    style={{ background: "linear-gradient(135deg,#f97316,#ea580c)" }}>
-                    🛒 Giỏ hàng
-                    {cartCount > 0 && (
-                        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold">
-                            {cartCount}
-                        </span>
-                    )}
-                </button>
+            <div className="mt-6 mb-5 flex flex-col items-center justify-center text-center gap-1">
+                <h1 className="text-2xl font-extrabold text-[#c4874a]">Sản phẩm trứng gà tươi</h1>
+                <p className="text-gray-500 text-sm">Tươi mới mỗi ngày — kiểm định chất lượng — giao tận nơi</p>
             </div>
 
             {/* Trust Banner */}
@@ -507,14 +499,6 @@ export default function ProductPage() {
                     product={modalProduct}
                     onClose={() => setModalProduct(null)}
                     onAddToCart={addToCart}
-                />
-            )}
-            {cartOpen && (
-                <CartDrawer
-                    cart={cart}
-                    onClose={() => setCartOpen(false)}
-                    onRemove={removeFromCart}
-                    onChangeQty={changeQty}
                 />
             )}
 
