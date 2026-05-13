@@ -1,84 +1,84 @@
 function Blog() {
-    const recentNews = [
-        {
-            img: "http://tranhuong.com.vn/upload/news/cachlammontrunghapvan_3938.jpg",
-            title: "Cách làm trứng hấp vân ngon, ai cũng tấm tắc khen",
-            href: "http://tranhuong.com.vn/tin-tuc/cach-lam-trung-hap-van-ngon-ai-cung-tam-tac-khen.html",
-        },
-        {
-            img: "http://tranhuong.com.vn/upload/news/slide_8900.jpg",
-            title: "Cách làm tôm chay bằng váng đậu phụ giòn dai",
-            href: "http://tranhuong.com.vn/tin-tuc/cach-lam-tom-chay-bang-vang-dau-phu-gion-dai.html",
-        },
-        {
-            img: "http://tranhuong.com.vn/upload/news/30987chethai_8604.jpg",
-            title: "Tổng hợp cách nấu 24 món chè ngon ngọt, thanh mát",
-            href: "http://tranhuong.com.vn/tin-tuc/tong-hop-cach-nau-24-mon-che-ngon-ngot-thanh-mat-ai-nhin-cung-muon-an.html",
-        },
-    ];
+const recentNews = [
+    {
+        img: "/assets/images/news/cachlammontrunghapvan_3938.jpg",
+        title: "Cách làm trứng hấp vân ngon, ai cũng tấm tắc khen",
+        href: "http://tranhuong.com.vn/tin-tuc/cach-lam-trung-hap-van-ngon-ai-cung-tam-tac-khen.html",
+    },
+    {
+        img: "/assets/images/main/slide_8900.jpg",
+        title: "Cách làm tôm chay bằng váng đậu phụ giòn dai",
+        href: "http://tranhuong.com.vn/tin-tuc/cach-lam-tom-chay-bang-vang-dau-phu-gion-dai.html",
+    },
+    {
+        img: "/assets/images/main/30987chethai_8604.jpg",
+        title: "Tổng hợp cách nấu 24 món chè ngon ngọt, thanh mát",
+        href: "http://tranhuong.com.vn/tin-tuc/tong-hop-cach-nau-24-mon-che-ngon-ngot-thanh-mat-ai-nhin-cung-muon-an.html",
+    },
+];
 
-    const categories = [
-        {
-            img: "http://tranhuong.com.vn/upload/news/img2656_6494.jpg",
-            title: "Các hoạt động xã hội",
-            href: "http://tranhuong.com.vn/tin-tuc/cac-hoat-dong-xa-hoi.html",
-        },
-        {
-            img: "http://tranhuong.com.vn/upload/news/iso_4287.jpg",
-            title: "Lễ đón nhận ISO",
-            href: "http://tranhuong.com.vn/tin-tuc/le-don-nhan-iso.html",
-        },
-        {
-            img: "http://tranhuong.com.vn/upload/news/345_8036.png",
-            title: "Chứng nhận thương hiệu tin dùng",
-            href: "http://tranhuong.com.vn/tin-tuc/chung-nhan.html",
-        },
-    ];
+const categories = [
+    {
+        img: "/assets/images/main/img2656_6494.jpg",
+        title: "Các hoạt động xã hội",
+        href: "http://tranhuong.com.vn/tin-tuc/cac-hoat-dong-xa-hoi.html",
+    },
+    {
+        img: "/assets/images/main/iso_4287.jpg",
+        title: "Lễ đón nhận ISO",
+        href: "http://tranhuong.com.vn/tin-tuc/le-don-nhan-iso.html",
+    },
+    {
+        img: "/assets/images/main/345_8036.png",
+        title: "Chứng nhận thương hiệu tin dùng",
+        href: "http://tranhuong.com.vn/tin-tuc/chung-nhan.html",
+    },
+];
 
-    const allNews = [
-        {
-            img: "http://tranhuong.com.vn/upload/news/img2656_6494.jpg",
-            title: "Các hoạt động xã hội",
-            desc: "Hằng năm, Công ty Trân Hương luôn năng nổ tham gia các hoạt động xã hội, nhằm sẻ chia, gắn kết tình yêu thương cộng đồng.",
-            href: "http://tranhuong.com.vn/tin-tuc/cac-hoat-dong-xa-hoi.html",
-            date: "15/08/2019",
-        },
-        {
-            img: "http://tranhuong.com.vn/upload/news/iso_4287.jpg",
-            title: "Lễ đón nhận ISO",
-            desc: "Công ty Trân Hương tự hào là một trong những công ty cung cấp suất ăn công nghiệp hàng đầu tại Việt Nam đạt chuẩn ISO 22000:2005 và ISO 9001:2008.",
-            href: "http://tranhuong.com.vn/tin-tuc/le-don-nhan-iso.html",
-            date: "10/06/2019",
-        },
-        {
-            img: "http://tranhuong.com.vn/upload/news/345_8036.png",
-            title: "Chứng nhận thương hiệu – Nhãn hiệu tin dùng 2017",
-            desc: "Năm 2017, Trân Hương vinh dự được tôn vinh trong buổi lễ trao giải Thương hiệu – Nhãn hiệu tin dùng, khẳng định vị thế trên thị trường.",
-            href: "http://tranhuong.com.vn/tin-tuc/chung-nhan.html",
-            date: "20/12/2017",
-        },
-        {
-            img: "http://tranhuong.com.vn/upload/news/cachlammontrunghapvan_3938.jpg",
-            title: "Cách làm trứng hấp vân ngon, ai cũng tấm tắc khen",
-            desc: "Trứng hấp vân là món ăn ngon, dễ chế biến, phù hợp cho cả gia đình. Không chỉ hấp dẫn người lớn mà các bé cũng rất mê món ăn đã mắt, đã miệng này.",
-            href: "http://tranhuong.com.vn/tin-tuc/cach-lam-trung-hap-van-ngon-ai-cung-tam-tac-khen.html",
-            date: "05/03/2019",
-        },
-        {
-            img: "http://tranhuong.com.vn/upload/news/slide_8900.jpg",
-            title: "Cách làm tôm chay bằng váng đậu phụ giòn dai",
-            desc: "Chỉ với vài bước đơn giản là có ngay món tôm chay vừa sạch sẽ, vừa an toàn lại ngon miệng — lựa chọn lý tưởng cho những ngày ăn chay.",
-            href: "http://tranhuong.com.vn/tin-tuc/cach-lam-tom-chay-bang-vang-dau-phu-gion-dai.html",
-            date: "18/02/2019",
-        },
-        {
-            img: "http://tranhuong.com.vn/upload/news/foodyocquynhnguyenthuonghien212636494666490873664_3497.jpg",
-            title: "Những món ăn đường phố hấp dẫn giới trẻ",
-            desc: "Ăn vặt luôn là hoạt động yêu thích của hầu hết mọi người. Cùng khám phá những món ăn đường phố Việt Nam đang làm mưa làm gió trong cộng đồng giới trẻ.",
-            href: "http://tranhuong.com.vn/tin-tuc/nhung-mon-an-duong-pho-hap-dan-gioi-tre.html",
-            date: "10/01/2019",
-        },
-    ];
+const allNews = [
+    {
+        img: "/assets/images/main/img2656_6494.jpg",
+        title: "Các hoạt động xã hội",
+        desc: "Hằng năm, Công ty Trân Hương luôn năng nổ tham gia các hoạt động xã hội, nhằm sẻ chia, gắn kết tình yêu thương cộng đồng.",
+        href: "http://tranhuong.com.vn/tin-tuc/cac-hoat-dong-xa-hoi.html",
+        date: "15/08/2019",
+    },
+    {
+        img: "/assets/images/main/iso_4287.jpg",
+        title: "Lễ đón nhận ISO",
+        desc: "Công ty Trân Hương tự hào là một trong những công ty cung cấp suất ăn công nghiệp hàng đầu tại Việt Nam đạt chuẩn ISO 22000:2005 và ISO 9001:2008.",
+        href: "http://tranhuong.com.vn/tin-tuc/le-don-nhan-iso.html",
+        date: "10/06/2019",
+    },
+    {
+        img: "/assets/images/main/345_8036.png",
+        title: "Chứng nhận thương hiệu – Nhãn hiệu tin dùng 2017",
+        desc: "Năm 2017, Trân Hương vinh dự được tôn vinh trong buổi lễ trao giải Thương hiệu – Nhãn hiệu tin dùng, khẳng định vị thế trên thị trường.",
+        href: "http://tranhuong.com.vn/tin-tuc/chung-nhan.html",
+        date: "20/12/2017",
+    },
+    {
+        img: "/assets/images/main/cachlammontrunghapvan_3938.jpg",
+        title: "Cách làm trứng hấp vân ngon, ai cũng tấm tắc khen",
+        desc: "Trứng hấp vân là món ăn ngon, dễ chế biến, phù hợp cho cả gia đình. Không chỉ hấp dẫn người lớn mà các bé cũng rất mê món ăn đã mắt, đã miệng này.",
+        href: "http://tranhuong.com.vn/tin-tuc/cach-lam-trung-hap-van-ngon-ai-cung-tam-tac-khen.html",
+        date: "05/03/2019",
+    },
+    {
+        img: "/assets/images/main/slide_8900.jpg",
+        title: "Cách làm tôm chay bằng váng đậu phụ giòn dai",
+        desc: "Chỉ với vài bước đơn giản là có ngay món tôm chay vừa sạch sẽ, vừa an toàn lại ngon miệng — lựa chọn lý tưởng cho những ngày ăn chay.",
+        href: "http://tranhuong.com.vn/tin-tuc/cach-lam-tom-chay-bang-vang-dau-phu-gion-dai.html",
+        date: "18/02/2019",
+    },
+    {
+        img: "/assets/images/main/foodyocquynhnguyenthuonghien212636494666490873664_3497.jpg",
+        title: "Những món ăn đường phố hấp dẫn giới trẻ",
+        desc: "Ăn vặt luôn là hoạt động yêu thích của hầu hết mọi người. Cùng khám phá những món ăn đường phố Việt Nam đang làm mưa làm gió trong cộng đồng giới trẻ.",
+        href: "http://tranhuong.com.vn/tin-tuc/nhung-mon-an-duong-pho-hap-dan-gioi-tre.html",
+        date: "10/01/2019",
+    },
+];
 
     return (
         <main className="home mx-auto w-full md:w-[80%] px-4 mt-[11%]">
