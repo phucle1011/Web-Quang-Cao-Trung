@@ -1,15 +1,10 @@
-import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import Constants from "../../../Constants";
-import axios from "axios";
-
-const URL = Constants.DOMAIN_API;
 
 function Contact() {
     return (
-        <main className="max-w-6xl mx-auto p-8 bg-white shadow-lg rounded-lg mt-[11%]">
+        /* FIX 1: mt-20 mobile, giữ md:mt-[11%] desktop — FIX 2: p-4 mobile, md:p-8 desktop */
+        <main className="max-w-6xl mx-auto p-4 md:p-8 bg-white shadow-lg rounded-lg mt-20 md:mt-[11%]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 
                 {/* CỘT TRÁI - FAQ */}
@@ -18,93 +13,91 @@ function Contact() {
                         Câu hỏi thường gặp
                     </h2>
                     <div className="space-y-3 px-4">
+                        {/* FIX 4: text-sm md:text-lg cho summary — dễ đọc hơn trên mobile */}
                         <details className="border border-gray-300 p-2 rounded-md bg-gray-50">
-                            <summary className="cursor-pointer font-semibold text-lg text-gray-800">
+                            <summary className="cursor-pointer font-semibold text-sm md:text-lg text-gray-800">
                                 Làm thế nào để đặt mua trứng?
                             </summary>
-                            <p className="mt-3 text-gray-700 leading-relaxed">
+                            <p className="mt-3 text-gray-700 leading-relaxed text-sm">
                                 Bạn có thể đặt mua trứng trực tiếp trên website bằng cách chọn sản phẩm, thêm vào giỏ hàng và tiến hành thanh toán.
                                 Ngoài ra, bạn cũng có thể liên hệ hotline để được hỗ trợ đặt hàng nhanh chóng.
                             </p>
                         </details>
                         <details className="border border-gray-300 p-2 rounded-md bg-gray-50">
-                            <summary className="cursor-pointer font-semibold text-lg text-gray-800">
+                            <summary className="cursor-pointer font-semibold text-sm md:text-lg text-gray-800">
                                 Trứng có đảm bảo tươi và an toàn không?
                             </summary>
-                            <p className="mt-3 text-gray-700 leading-relaxed">
+                            <p className="mt-3 text-gray-700 leading-relaxed text-sm">
                                 Tất cả trứng đều được lấy từ trang trại uy tín, kiểm định chất lượng kỹ càng trước khi giao đến khách hàng.
                                 Chúng tôi cam kết trứng luôn tươi mới và an toàn vệ sinh thực phẩm.
                             </p>
                         </details>
                         <details className="border border-gray-300 p-2 rounded-md bg-gray-50">
-                            <summary className="cursor-pointer font-semibold text-lg text-gray-800">
+                            <summary className="cursor-pointer font-semibold text-sm md:text-lg text-gray-800">
                                 Tôi nên bảo quản trứng như thế nào?
                             </summary>
-                            <p className="mt-3 text-gray-700 leading-relaxed">
+                            <p className="mt-3 text-gray-700 leading-relaxed text-sm">
                                 Nên bảo quản trứng trong ngăn mát tủ lạnh ở nhiệt độ ổn định. Tránh rửa trứng trước khi cất để giữ được lớp bảo vệ tự nhiên,
                                 giúp trứng tươi lâu hơn.
                             </p>
                         </details>
                         <details className="border border-gray-300 p-2 rounded-md bg-gray-50">
-                            <summary className="cursor-pointer font-semibold text-lg text-gray-800">
+                            <summary className="cursor-pointer font-semibold text-sm md:text-lg text-gray-800">
                                 Giao hàng trứng mất bao lâu?
                             </summary>
-                            <p className="mt-3 text-gray-700 leading-relaxed">
+                            <p className="mt-3 text-gray-700 leading-relaxed text-sm">
                                 Thời gian giao hàng thường từ 1–3 ngày tùy khu vực. Chúng tôi luôn đóng gói cẩn thận để đảm bảo trứng không bị vỡ trong quá trình vận chuyển.
                             </p>
                         </details>
                         <details className="border border-gray-300 p-2 rounded-md bg-gray-50">
-                            <summary className="cursor-pointer font-semibold text-lg text-gray-800">
+                            <summary className="cursor-pointer font-semibold text-sm md:text-lg text-gray-800">
                                 Nếu trứng bị vỡ khi nhận hàng thì sao?
                             </summary>
-                            <p className="mt-3 text-gray-700 leading-relaxed">
+                            <p className="mt-3 text-gray-700 leading-relaxed text-sm">
                                 Nếu sản phẩm bị vỡ hoặc hư hỏng khi nhận hàng, bạn có thể liên hệ ngay với chúng tôi trong vòng 24 giờ để được hỗ trợ đổi trả hoặc hoàn tiền.
                             </p>
                         </details>
                         <details className="border border-gray-300 p-2 rounded-md bg-gray-50">
-                            <summary className="cursor-pointer font-semibold text-lg text-gray-800">
+                            <summary className="cursor-pointer font-semibold text-sm md:text-lg text-gray-800">
                                 Tôi có thể đặt số lượng lớn (sỉ) không?
                             </summary>
-                            <p className="mt-3 text-gray-700 leading-relaxed">
+                            <p className="mt-3 text-gray-700 leading-relaxed text-sm">
                                 Chúng tôi hỗ trợ đặt hàng số lượng lớn cho các đại lý, nhà hàng, trường học và doanh nghiệp.
                                 Vui lòng liên hệ hotline hoặc email để được báo giá sỉ ưu đãi.
                             </p>
                         </details>
-
                         <details className="border border-gray-300 p-2 rounded-md bg-gray-50">
-                            <summary className="cursor-pointer font-semibold text-lg text-gray-800">
+                            <summary className="cursor-pointer font-semibold text-sm md:text-lg text-gray-800">
                                 Trứng có hạn sử dụng bao lâu?
                             </summary>
-                            <p className="mt-3 text-gray-700 leading-relaxed">
+                            <p className="mt-3 text-gray-700 leading-relaxed text-sm">
                                 Trứng gà tươi thường có thể sử dụng trong vòng 30 ngày kể từ ngày đẻ nếu bảo quản đúng cách trong tủ lạnh.
                                 Mỗi lô hàng đều được ghi rõ ngày sản xuất để bạn tiện theo dõi.
                             </p>
                         </details>
-
                         <details className="border border-gray-300 p-2 rounded-md bg-gray-50">
-                            <summary className="cursor-pointer font-semibold text-lg text-gray-800">
+                            <summary className="cursor-pointer font-semibold text-sm md:text-lg text-gray-800">
                                 Trứng có được kiểm định an toàn thực phẩm không?
                             </summary>
-                            <p className="mt-3 text-gray-700 leading-relaxed">
+                            <p className="mt-3 text-gray-700 leading-relaxed text-sm">
                                 Có. Tất cả sản phẩm của chúng tôi đều đạt tiêu chuẩn an toàn vệ sinh thực phẩm theo quy định của Bộ Y tế.
                                 Trang trại định kỳ được kiểm tra và cấp chứng nhận đảm bảo chất lượng.
                             </p>
                         </details>
-
                         <details className="border border-gray-300 p-2 rounded-md bg-gray-50">
-                            <summary className="cursor-pointer font-semibold text-lg text-gray-800">
+                            <summary className="cursor-pointer font-semibold text-sm md:text-lg text-gray-800">
                                 Có chương trình khuyến mãi hay ưu đãi thành viên không?
                             </summary>
-                            <p className="mt-3 text-gray-700 leading-relaxed">
+                            <p className="mt-3 text-gray-700 leading-relaxed text-sm">
                                 Chúng tôi thường xuyên có các chương trình khuyến mãi theo mùa và ưu đãi cho khách hàng thân thiết.
                                 Đăng ký tài khoản trên website để nhận thông báo sớm nhất về các chương trình ưu đãi.
                             </p>
                         </details>
                         <details className="border border-gray-300 p-2 rounded-md bg-gray-50">
-                            <summary className="cursor-pointer font-semibold text-lg text-gray-800">
+                            <summary className="cursor-pointer font-semibold text-sm md:text-lg text-gray-800">
                                 Tôi có thể hủy hoặc thay đổi đơn hàng sau khi đặt không?
                             </summary>
-                            <p className="mt-3 text-gray-700 leading-relaxed">
+                            <p className="mt-3 text-gray-700 leading-relaxed text-sm">
                                 Bạn có thể hủy hoặc chỉnh sửa đơn hàng trong vòng 2 giờ kể từ khi đặt hàng thành công.
                                 Sau thời gian này, đơn hàng có thể đã được xử lý và không thể thay đổi. Vui lòng liên hệ hotline sớm nhất có thể để được hỗ trợ.
                             </p>
@@ -133,14 +126,18 @@ function Contact() {
                             </div>
                         </div>
 
-                        {/* Điện thoại */}
+                        {/* FIX 3: Số điện thoại bọc tel: link để bấm gọi trực tiếp trên mobile */}
                         <div className="flex items-start gap-4 bg-green-50 border border-green-100 rounded-xl p-4">
                             <div className="w-11 h-11 bg-green-600 rounded-full flex items-center justify-center shrink-0 text-white text-xl">
                                 📞
                             </div>
                             <div>
                                 <p className="font-bold text-blue-950 mb-1">Điện thoại</p>
-                                <p className="text-gray-700 text-sm">0274.3746.959 - 0274.3717.885 - 0274.3717.659</p>
+                                <div className="flex flex-col gap-0.5">
+                                    <a href="tel:02743746959" className="text-gray-700 text-sm hover:text-green-600 transition-colors">0274.3746.959</a>
+                                    <a href="tel:02743717885" className="text-gray-700 text-sm hover:text-green-600 transition-colors">0274.3717.885</a>
+                                    <a href="tel:02743717659" className="text-gray-700 text-sm hover:text-green-600 transition-colors">0274.3717.659</a>
+                                </div>
                             </div>
                         </div>
 
@@ -187,15 +184,16 @@ function Contact() {
             {/* BẢN ĐỒ */}
             <section className="mt-8 border-t border-gray-300 pt-8">
                 <h2 className="text-3xl font-bold text-blue-950 mb-6 text-center">Bản đồ</h2>
+                {/* FIX 3: h-48 trên mobile (192px), md:h-[400px] trên desktop */}
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.025417314242!2d106.71759499999999!3d10.9614525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d7f35f003ef7%3A0xc23acc37e77fa1e0!2zQ8O0bmcgdHkgVE5ISCBUaOG7sWMgUGjhuqltIFRNLURWIFRyw6JuIEjGsMahbmc!5e0!3m2!1sen!2s!4v1778549115316!5m2!1sen!2s"
                     width="100%"
-                    height="400"
+                    height="100%"
                     style={{ border: 0 }}
                     allowFullScreen=""
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    className="rounded-xl"
+                    className="rounded-xl h-48 md:h-[400px]"
                 />
             </section>
         </main>

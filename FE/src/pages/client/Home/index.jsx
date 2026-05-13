@@ -376,23 +376,23 @@ function StatsSection() {
 
 function CTASection() {
     return (
-        <div className="bg-amber-50 p-6 rounded-lg shadow mt-4 text-center mx-auto border border-amber-200">
-            <div className="inline-block bg-orange-100 text-orange-600 border border-orange-300 px-4 py-1 rounded-full text-sm font-bold mb-3">
+        <div className="bg-amber-50 p-4 md:p-6 rounded-lg shadow mt-4 text-center mx-auto border border-amber-200">
+            <div className="inline-block bg-orange-100 text-orange-600 border border-orange-300 px-3 py-1 rounded-full text-xs md:text-sm font-bold mb-3">
                 🚚 Miễn phí giao hàng tận nơi khi đặt mua số lượng lớn
             </div>
-            <h2 className="text-xl md:text-2xl font-bold text-[#7a4500] mb-2">ĐẶT HÀNG NGAY HÔM NAY!</h2>
-            <p className="text-gray-600 mb-4">Giao hàng tận nơi tại Bình Dương và các tỉnh lân cận. Cam kết chất lượng — an toàn vệ sinh.</p>
+            <h2 className="text-lg md:text-2xl font-bold text-[#7a4500] mb-2">ĐẶT HÀNG NGAY HÔM NAY!</h2>
+            <p className="text-gray-600 text-sm md:text-base mb-4">Giao hàng tận nơi tại Bình Dương và các tỉnh lân cận. Cam kết chất lượng — an toàn vệ sinh.</p>
             <div className="flex flex-col md:flex-row gap-3 justify-center">
                 <a href="#"
-                    className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-3 rounded-lg no-underline transition duration-200">
+                    className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-3 rounded-lg no-underline transition duration-200 text-sm md:text-base">
                     📞 0356 808 561
                 </a>
                 <a href="#"
-                    className="bg-white hover:bg-orange-50 text-orange-500 border border-orange-400 font-bold px-6 py-3 rounded-lg no-underline transition duration-200">
+                    className="bg-white hover:bg-orange-50 text-orange-500 border border-orange-400 font-bold px-6 py-3 rounded-lg no-underline transition duration-200 text-sm md:text-base">
                     📞 0938 77 55 99
                 </a>
             </div>
-            <p className="mt-4 text-gray-500 text-sm">🌐 www.tranhuong.com.vn &nbsp;|&nbsp; 📘 Công ty TNHH TP TM-DV Trân Hương</p>
+            <p className="mt-4 text-gray-500 text-xs md:text-sm">🌐 www.tranhuong.com.vn &nbsp;|&nbsp; 📘 Công ty TNHH TP TM-DV Trân Hương</p>
         </div>
     );
 }
@@ -403,7 +403,6 @@ function CTASection() {
 function Home() {
     return (
         <main className="home mx-auto w-full md:w-[80%] px-4" id="home">
-            {/* <FlashSaleBanner /> */}
             <WhyUs />
             <Products />
             <Reviews />
