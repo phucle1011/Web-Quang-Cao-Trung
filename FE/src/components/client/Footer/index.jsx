@@ -12,7 +12,7 @@ function Footer() {
                                 CÔNG TY TNHH THỰC PHẨM THƯƠNG MẠI DỊCH VỤ TRÂN HƯƠNG
                             </h2>
                             <ul className="space-y-2 text-gray-300 text-xs md:text-sm">
-                                <li>🏠 Lô D12, Ô 29-30 Khu dân cư Thuận Giao, khu phố Bình Thuận 2, Thuận Giao, Bình Dương</li>
+                                <li>🏠 Lô D12, Ô 29-30 Khu dân cư Thuận Giao, khu phố Bình Thuận 2, Thuận Giao, Hồ Chí Minh</li>
                                 <li>📞 0274.3746.959 - 0274.3717.885</li>
                                 <li>✉️ tranhuong888@yahoo.com</li>
                                 <li className="text-xs text-gray-400 leading-relaxed">
