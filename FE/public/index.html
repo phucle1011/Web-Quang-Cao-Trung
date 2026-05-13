@@ -7,23 +7,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#e07000" />
 
-  <!-- SEO cơ bản -->
+  <!-- ═══ SEO CƠ BẢN ═══ -->
   <title>Trứng Sạch Farm - Trứng Gà Tươi Sạch Bình Dương | Giao Hàng Tận Nơi</title>
-  <meta name="description" content="Trứng Sạch Farm - Chuyên cung cấp trứng gà tươi sạch tại Việt Nam. Thu hoạch hàng ngày, kiểm định chất lượng, giao hàng tận nơi miễn phí. Liên hệ: 0356 808 561 - 0938 775 599" />
-  <meta name="keywords" content="trứng gà tươi, trứng sạch, trứng gà Bình Dương, mua trứng gà, trứng gà loại 1, trứng gà loại 2, trứng gà đặc biệt, giao trứng tận nơi, trứng sạch farm" />
+  <meta name="description" content="Trứng Sạch Farm - Chuyên cung cấp trứng gà tươi sạch tại Bình Dương & TP.HCM. Thu hoạch hàng ngày, kiểm định chất lượng, giao hàng tận nơi miễn phí đơn từ 100.000đ. Liên hệ: 0356 808 561" />
+  <meta name="keywords" content="trứng gà tươi, trứng sạch, trứng gà Bình Dương, mua trứng gà, trứng gà loại 1, trứng gà loại 2, trứng gà loại 3, giao trứng tận nơi, trứng sạch farm, trứng gà tươi TPHCM" />
   <meta name="author" content="Trứng Sạch Farm" />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://trungsachfarm.vercel.app/" />
 
-  <!-- Open Graph (chia sẻ Facebook, Zalo) -->
+  <!-- ═══ OPEN GRAPH (Facebook, Zalo) ═══ -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://trungsachfarm.vercel.app" />
+  <meta property="og:url" content="https://trungsachfarm.vercel.app/" />
   <meta property="og:title" content="Trứng Sạch Farm - Trứng Gà Tươi Sạch Bình Dương" />
   <meta property="og:description" content="Trứng gà tươi sạch, thu hoạch hàng ngày, kiểm định chất lượng, giao hàng miễn phí tận nơi. Liên hệ Zalo: 0356 808 561" />
-  <meta property="og:image" content="%PUBLIC_URL%/assets/images/main/logo.jpg" />
+  <meta property="og:image" content="https://trungsachfarm.vercel.app/assets/images/main/logo.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="vi_VN" />
   <meta property="og:site_name" content="Trứng Sạch Farm" />
 
-  <!-- Apple -->
+  <!-- ═══ TWITTER CARD ═══ -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Trứng Sạch Farm - Trứng Gà Tươi Sạch Bình Dương" />
+  <meta name="twitter:description" content="Trứng gà tươi sạch, thu hoạch hàng ngày, giao hàng miễn phí tận nơi." />
+  <meta name="twitter:image" content="https://trungsachfarm.vercel.app/assets/images/main/logo.jpg" />
+
+  <!-- ═══ STRUCTURED DATA - LOCAL BUSINESS ═══ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Trứng Sạch Farm",
+    "description": "Chuyên cung cấp trứng gà tươi sạch tại Bình Dương và TP.HCM. Thu hoạch hàng ngày, kiểm định chất lượng, giao hàng tận nơi.",
+    "url": "https://trungsachfarm.vercel.app",
+    "logo": "https://trungsachfarm.vercel.app/assets/images/main/logo.jpg",
+    "image": "https://trungsachfarm.vercel.app/assets/images/main/logo.jpg",
+    "telephone": ["+84356808561", "+84938775599"],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Thuận Giao",
+      "addressRegion": "Bình Dương",
+      "addressCountry": "VN"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "07:00",
+      "closes": "17:00"
+    },
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=100068380728370"
+    ]
+  }
+  </script>
+
+  <!-- ═══ STRUCTURED DATA - PRODUCT ═══ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Trứng Gà Tươi Sạch",
+    "description": "Trứng gà tươi sạch thu hoạch hàng ngày từ trang trại Bình Dương, kiểm định chất lượng, đảm bảo an toàn vệ sinh thực phẩm.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Trứng Sạch Farm"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "VND",
+      "lowPrice": "1400",
+      "highPrice": "1600",
+      "offerCount": "9",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+
+  <!-- ═══ APPLE & MANIFEST ═══ -->
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/assets/images/main/logo.jpg" />
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 </head>
