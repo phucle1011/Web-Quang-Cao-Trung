@@ -300,10 +300,10 @@ function WhyUs() {
 
 function NewsSection() {
     const news = [
-        { href: "http://tranhuong.com.vn/tin-tuc/cach-lam-trung-hap-van-ngon-ai-cung-tam-tac-khen.html", img: "http://tranhuong.com.vn/upload/news/cachlammontrunghapvan_3938.jpg", title: "Cách làm trứng hấp vân ngon, ai cũng tấm tắc khen", desc: "Trứng hấp vân là món ăn ngon, dễ chế biến, phù hợp cho cả gia đình..." },
-        { href: "http://tranhuong.com.vn/tin-tuc/cach-lam-tom-chay-bang-vang-dau-phu-gion-dai.html", img: "http://tranhuong.com.vn/upload/news/slide_8900.jpg", title: "Cách làm tôm chay bằng váng đậu phụ giòn dai", desc: "Chỉ với vài bước đơn giản là có ngay món tôm chay vừa sạch sẽ, vừa ngon miệng..." },
-        { href: "http://tranhuong.com.vn/tin-tuc/le-don-nhan-iso.html", img: "http://tranhuong.com.vn/upload/news/iso_4287.jpg", title: "Trân Hương đón nhận chứng nhận ISO 22000 & 9001", desc: "Tự hào là doanh nghiệp thực phẩm hàng đầu đạt chuẩn ISO tại Việt Nam..." },
-        { href: "http://tranhuong.com.vn/tin-tuc/chung-nhan.html", img: "http://tranhuong.com.vn/upload/news/345_8036.png", title: "Vinh danh Thương hiệu – Nhãn hiệu tin dùng 2017", desc: "Năm 2017, Trân Hương vinh dự được tôn vinh trong lễ trao giải Thương hiệu tin dùng..." },
+        { href: "http://tranhuong.com.vn/tin-tuc/cach-lam-trung-hap-van-ngon-ai-cung-tam-tac-khen.html", img: "/assets/images/main/cachlammontrunghapvan_3938.jpg", title: "Cách làm trứng hấp vân ngon, ai cũng tấm tắc khen", desc: "Trứng hấp vân là món ăn ngon, dễ chế biến, phù hợp cho cả gia đình..." },
+        { href: "http://tranhuong.com.vn/tin-tuc/cach-lam-tom-chay-bang-vang-dau-phu-gion-dai.html", img: "/assets/images/main/slide_8900.jpg", title: "Cách làm tôm chay bằng váng đậu phụ giòn dai", desc: "Chỉ với vài bước đơn giản là có ngay món tôm chay vừa sạch sẽ, vừa ngon miệng..." },
+        { href: "http://tranhuong.com.vn/tin-tuc/le-don-nhan-iso.html", img: "/assets/images/main/iso_4287.jpg", title: "Trân Hương đón nhận chứng nhận ISO 22000 & 9001", desc: "Tự hào là doanh nghiệp thực phẩm hàng đầu đạt chuẩn ISO tại Việt Nam..." },
+        { href: "http://tranhuong.com.vn/tin-tuc/chung-nhan.html", img: "/assets/images/main/345_8036.png", title: "Vinh danh Thương hiệu – Nhãn hiệu tin dùng 2017", desc: "Năm 2017, Trân Hương vinh dự được tôn vinh trong lễ trao giải Thương hiệu tin dùng..." },
     ];
     return (
         <div className="bg-white p-4 rounded-lg shadow mt-4 text-center mx-auto">
