@@ -1,7 +1,7 @@
 function Blog() {
 const recentNews = [
     {
-        img: "/assets/images/news/cachlammontrunghapvan_3938.jpg",
+        img: "/assets/images/main/cachlammontrunghapvan_3938.jpg",
         title: "Cách làm trứng hấp vân ngon, ai cũng tấm tắc khen",
         href: "http://tranhuong.com.vn/tin-tuc/cach-lam-trung-hap-van-ngon-ai-cung-tam-tac-khen.html",
     },
