@@ -103,83 +103,51 @@ function Header() {
                     borderBottom: "2px solid rgba(255,200,100,0.25)"
                 }}
             >
-                <div className="flex justify-between w-[80%] mx-auto items-center py-2">
+                <div className="flex w-[80%] mx-auto items-center py-2 relative">
 
-                    {/* Logo */}
-                    <img
-                        src="/assets/images/main/logo.jpg"
-                        alt="Trân Hương"
-                        className="h-20 w-20 object-contain flex-shrink-0 mx-auto" alt="Logo"
-                    />
+                    {/* Logo bên trái */}
+                    <div className="flex-shrink-0">
+                        <img
+                            src="/assets/images/main/logo.jpg"
+                            alt="Trân Hương"
+                            className="h-20 w-20 object-contain"
+                        />
+                    </div>
 
-                    {/* Nav links */}
-                    <ul className="flex gap-1 list-none items-center font-bold m-0">
-                        {[
-                            { to: "/", label: "Trang chủ" },
-                            { to: "/about", label: "Giới thiệu" },
-                            { to: "/product", label: "Sản phẩm" },
-                            { to: "/blog", label: "Tin tức" },
-                            { to: "/contact", label: "Liên hệ" },
-                        ].map((item, i) => (
-                            <li key={i} className="px-3 py-2 cursor-pointer rounded-md hover:bg-white/10 transition duration-200">
-                                <Link to={item.to}
-                                    className="text-amber-100 no-underline hover:text-yellow-300 transition duration-200 text-sm">
-                                    {item.label}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-
-                    {/* Auth */}
-                    <ul className="flex gap-2 list-none items-center m-0">
-                        <li>
-                            <Link to="/contact" className="text-amber-100 no-underline text-sm hover:text-yellow-300 transition">
-                                Hỗ trợ
-                            </Link>
-                        </li>
-                        {user ? (
-                            <div>
-                                <Button
-                                    id="basic-button"
-                                    aria-controls={open ? 'basic-menu' : undefined}
-                                    aria-haspopup="true"
-                                    aria-expanded={open ? 'true' : undefined}
-                                    onClick={handleClick}
-                                    sx={{ color: '#fef3c7', fontWeight: 'bold', textTransform: 'none', fontSize: '0.875rem' }}
+                    {/* Menu nằm giữa */}
+                    <div className="absolute left-1/2 -translate-x-1/2">
+                        <ul className="flex gap-2 list-none items-center font-bold m-0">
+                            {[
+                                { to: "/", label: "Trang chủ" },
+                                { to: "/about", label: "Giới thiệu" },
+                                { to: "/product", label: "Sản phẩm" },
+                                { to: "/blog", label: "Tin tức" },
+                                { to: "/contact", label: "Liên hệ" },
+                            ].map((item, i) => (
+                                <li
+                                    key={i}
+                                    className="px-3 py-2 cursor-pointer rounded-md hover:bg-white/10 transition duration-200"
                                 >
-                                    {user.fullName} <i className="fas fa-angle-down ml-2"></i>
-                                </Button>
-                                <Menu
-                                    id="basic-menu"
-                                    anchorEl={anchorEl}
-                                    open={open}
-                                    onClose={handleClose}
-                                    MenuListProps={{ 'aria-labelledby': 'basic-button' }}
-                                    PaperProps={{ sx: { mt: 1, borderRadius: 2, border: "1px solid #f59e0b44", boxShadow: "0 8px 24px rgba(122,69,0,0.2)" } }}
-                                >
-                                    <MenuItem onClick={() => { handleProfile(); handleClose(); }}>Tài khoản của tôi</MenuItem>
-                                    <MenuItem onClick={() => { handleHistory(); handleClose(); }}>Lịch sử mua vé</MenuItem>
-                                    <MenuItem onClick={() => { logout(); handleClose(); }} sx={{ color: "#e07000" }}>Đăng xuất</MenuItem>
-                                </Menu>
-                            </div>
-                        ) : (
-                            <>
-                                <li className="border border-amber-200/50 rounded-lg px-3 py-1 hover:border-yellow-300 transition">
-                                    <Link to="/register" className="text-amber-100 no-underline text-sm hover:text-yellow-300 transition">
-                                        <i className="fas fa-user mr-1"></i> Đăng ký
+                                    <Link
+                                        to={item.to}
+                                        className="text-amber-100 no-underline hover:text-yellow-300 transition duration-200 text-sm"
+                                    >
+                                        {item.label}
                                     </Link>
                                 </li>
-                                <li className="rounded-lg px-3 py-1 font-bold transition"
-                                    style={{ background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.3)" }}
-                                    onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.28)"}
-                                    onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.18)"}>
-                                    <Link to="/login" className="text-amber-100 no-underline text-sm hover:text-yellow-200 transition">
-                                        Đăng nhập
-                                    </Link>
-                                </li>
-                            </>
-                        )}
-                    </ul>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Hỗ trợ bên phải */}
+                    <div className="ml-auto">
+                        <Link
+                            to="/contact"
+                            className="text-amber-100 no-underline text-sm font-semibold hover:text-yellow-300 transition"
+                        >
+                            Hỗ trợ
+                        </Link>
+                    </div>
                 </div>
             </div>
 
@@ -220,7 +188,7 @@ function Header() {
 
                     <div className="swiper-pagination"></div>
 
-                        </div>
+                </div>
 
                 <div className="absolute bottom-10 left-0 w-full text-center z-10" id="homeComment">
                     <div id="comment-container"

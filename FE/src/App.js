@@ -8,7 +8,6 @@ import Product from "./pages/client/Product";
 import AboutUs from "./pages/client/About-us";
 import Blog from "./pages/client/Blog";
 import Contact from "./pages/client/Contact";
-import Profile from "./pages/client/Profile";
 import Login from "./pages/authenticator/Login";
 import Register from "./pages/authenticator/Register";
 //------------ADMIN-------------
@@ -73,14 +72,14 @@ const AppRoutes = () => {
         <Route path="contact" element={<Contact />} />
 
         {/* Các route cần bảo vệ được bọc riêng lẻ bằng <PrivateRoute> */}
-        <Route
+        {/* <Route
           path="profile"
           element={
             <PrivateRoute>
               <Profile />
             </PrivateRoute>
           }
-        />
+        /> */}
       </Route>
 
 
