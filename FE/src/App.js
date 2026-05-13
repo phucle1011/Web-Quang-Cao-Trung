@@ -1,5 +1,6 @@
 //--------------------CLIENT--------------------
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NotFound from "./pages/NotFound";
 import AdminLayout from "./layouts/AdminLayouts";
 import ClientLayout from "./layouts/ClientLayouts";
 import Dashboard from "./pages/admin/dashboard";
@@ -89,7 +90,7 @@ const AppRoutes = () => {
       <Route path="resetForm" element={<ResetForm />} />
       <Route path="resetPassword/:token" element={<ResetPassword />} />
 
-      <Route path="/admin" element={<AdminLayout />}>
+      {/* <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<Dashboard />} />
         <Route path="bus">
           <Route path="getAll" element={<BusGetAll />} />
@@ -149,7 +150,10 @@ const AppRoutes = () => {
         </Route>
 
 
-      </Route>
+      </Route> */}
+
+
+        <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
