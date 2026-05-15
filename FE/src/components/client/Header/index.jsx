@@ -197,7 +197,7 @@ function Header() {
                             <img src="/assets/images/main/banner1.jpg" alt="" className="w-full h-auto block" />
                         </div>
                         <div className="swiper-slide">
-                            <img src="/assets/images/main/banner2.jpg" alt="" className="w-full h-auto block" />
+                            <img src="/assets/images/main/banner2.jpeg" alt="" className="w-full h-auto block" />
                         </div>
                         <div className="swiper-slide">
                             <img src="/assets/images/main/banner3.jpg" alt="" className="w-full h-auto block" />
